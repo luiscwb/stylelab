@@ -6,29 +6,33 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 
-Future<void> main() async {
-  // Ensure that plugin services are initialized so that `availableCameras()`
-  // can be called before `runApp()`
-  WidgetsFlutterBinding.ensureInitialized();
+import 'image_pick.dart';
 
-  // Obtain a list of the available cameras on the device.
-  final cameras = await availableCameras();
+//https://flutter.dev/docs/cookbook/plugins/picture-using-camera
 
-  // Get a specific camera from the list of available cameras.
-  final firstCamera = cameras.first;
+// Future<void> main() async {
+//   // Ensure that plugin services are initialized so that `availableCameras()`
+//   // can be called before `runApp()`
+//   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(
-    MaterialApp(
-      theme: ThemeData.dark(),
-      home: TakePictureScreen(
-        // Pass the appropriate camera to the TakePictureScreen widget.
-        camera: firstCamera,
-      ),
-    ),
-  );
-}
+//   // Obtain a list of the available cameras on the device.
+//   final cameras = await availableCameras();
 
+//   // Get a specific camera from the list of available cameras.
+//   final firstCamera = cameras.first;
 
+//   runApp(
+//     MaterialApp(
+//       theme: ThemeData.dark(),
+//       home: TakePictureScreen(
+//         // Pass the appropriate camera to the TakePictureScreen widget.
+//         camera: firstCamera,
+//       ),
+//     ),
+//   );
+// }
+
+main() => runApp(TelaInicial());
 
 // A screen that allows users to take a picture using a given camera.
 class TakePictureScreen extends StatefulWidget {
@@ -137,6 +141,7 @@ class DisplayPictureScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(this.imagePath);
     return Scaffold(
       appBar: AppBar(title: Text('Display the Picture')),
       // The image is stored as a file on the device. Use the `Image.file`
